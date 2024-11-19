@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Teem" class="bg-purple-600 text-white" />
+    
+    <StackLayout class="p-4 space-y-4">
+        <Label text="Welcome to Teem!" class="text-3xl font-bold text-center text-purple-600" />
+        <Label text="Find your perfect activity partners" class="text-lg text-center text-gray-600" />
+        
+        <TextField hint="Email" text="{{ email }}" keyboardType="email" 
+                   class="p-4 bg-white rounded-lg" />
+        
+        <TextField hint="Password" text="{{ password }}" secure="true" 
+                   class="p-4 bg-white rounded-lg" />
+        
+        <Button text="Sign In" tap="{{ onSignIn }}" 
+                class="bg-purple-600 text-white p-4 rounded-lg" />
+        
+        <Button text="Sign Up" tap="{{ onSignUp }}" 
+                class="bg-white text-purple-600 p-4 rounded-lg border-2 border-purple-600" />
+    </StackLayout>
+</Page>

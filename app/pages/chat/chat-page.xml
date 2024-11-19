@@ -1,0 +1,38 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="{{ chatPartner.name }}" class="bg-purple-600 text-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ListView items="{{ messages }}" row="0" class="chat-list">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *" class="p-2">
+                    <Image src="{{ sender.profileImage }}" 
+                           class="w-10 h-10 rounded-full" 
+                           col="0" 
+                           visibility="{{ senderId === $parent.currentUser.id ? 'collapsed' : 'visible' }}" />
+                    <StackLayout col="1" class="ml-2">
+                        <Label text="{{ content }}"
+                               class="{{ senderId === $parent.currentUser.id ? 
+                                       'bg-purple-600 text-white p-3 rounded-lg ml-auto' : 
+                                       'bg-gray-200 p-3 rounded-lg' }}"
+                               textWrap="true" />
+                        <Label text="{{ timestamp | dateFormat }}"
+                               class="text-xs text-gray-500 mt-1" />
+                    </StackLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <GridLayout rows="auto" columns="*, auto" row="1" class="p-2 bg-white border-t">
+            <TextField hint="Type a message..." 
+                      text="{{ messageText }}" 
+                      col="0"
+                      class="p-2" />
+            <Button text="Send" 
+                    tap="{{ sendMessage }}"
+                    col="1"
+                    class="bg-purple-600 text-white p-2 rounded-lg ml-2" />
+        </GridLayout>
+    </GridLayout>
+</Page>

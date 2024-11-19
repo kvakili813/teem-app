@@ -1,0 +1,12 @@
+{{'<GridLayout rows="auto" columns="auto, *" class="bg-white p-4 rounded-lg shadow-md m-2">
+    <Image src="{{ profileImage }}" class="w-16 h-16 rounded-full" row="0" col="0" />
+    <StackLayout row="0" col="1" class="ml-4">
+        <Label text="{{ name }}" class="font-bold" />
+        <Label text="{{ bio }}" class="text-gray-600" textWrap="true" />
+        <WrapLayout>
+            <Label text="{{ interest }}" 
+                   class="text-xs text-purple-600 bg-purple-100 p-1 rounded m-1"
+                   repeat="{{ interests }}" />
+        </WrapLayout>
+    </StackLayout>
+</GridLayout>'}}

@@ -1,0 +1,68 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Teem" class="bg-purple-600 text-white">
+        <ActionItem tap="{{ onSignOut }}" 
+                   ios.position="right" 
+                   android.position="actionBar">
+            <Label text="Sign Out" class="text-white" />
+        </ActionItem>
+    </ActionBar>
+
+    <TabView selectedTabTextColor="purple" 
+             androidTabsPosition="bottom">
+        
+        <TabViewItem title="Matches" class="p-4">
+            <GridLayout>
+                <ListView items="{{ matches }}" class="list-group">
+                    <ListView.itemTemplate>
+                        <StackLayout class="list-group-item p-4 bg-white mb-2 rounded-lg">
+                            <Label text="{{ name }}" class="text-lg font-bold" />
+                            <Label text="{{ bio }}" class="text-gray-600" textWrap="true" />
+                            <FlexboxLayout class="mt-2">
+                                <Label text="{{ interests.join(', ') }}" 
+                                       class="text-sm text-purple-600" />
+                            </FlexboxLayout>
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+
+        <TabViewItem title="Groups" class="p-4">
+            <GridLayout>
+                <ListView items="{{ groups }}" class="list-group">
+                    <ListView.itemTemplate>
+                        <StackLayout class="list-group-item p-4 bg-white mb-2 rounded-lg">
+                            <Label text="{{ name }}" class="text-lg font-bold" />
+                            <Label text="{{ description }}" class="text-gray-600" textWrap="true" />
+                            <Button text="Join Group" 
+                                    tap="{{ $parent.onJoinGroup }}" 
+                                    class="bg-purple-600 text-white p-2 rounded-lg mt-2" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+
+        <TabViewItem title="Profile" class="p-4">
+            <ScrollView>
+                <StackLayout class="p-4 space-y-4">
+                    <Image src="{{ profileImage }}" class="h-32 w-32 rounded-full mx-auto" />
+                    <Label text="{{ currentUser.name }}" class="text-2xl font-bold text-center" />
+                    <TextView text="{{ currentUser.bio }}" 
+                             hint="Add your bio..." 
+                             class="p-4 bg-white rounded-lg" />
+                    <Label text="Interests" class="text-lg font-bold" />
+                    <WrapLayout class="space-x-2">
+                        <Label text="{{ interest }}" 
+                               class="bg-purple-100 text-purple-600 p-2 rounded-lg"
+                               repeat="{{ currentUser.interests }}" />
+                    </WrapLayout>
+                    <Button text="Edit Profile" 
+                            tap="{{ onEditProfile }}"
+                            class="bg-purple-600 text-white p-4 rounded-lg" />
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+        
+    </TabView>
+</Page>

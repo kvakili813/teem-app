@@ -1,0 +1,9 @@
+{{'<WrapLayout class="p-2">
+    <Button text="{{ interest }}"
+            tap="{{ $parent.onInterestSelect }}"
+            class="{{ $parent.isSelected(interest) ? 
+                    'bg-purple-600 text-white' : 
+                    'bg-white text-purple-600 border-purple-600 border' }} 
+                    p-2 m-1 rounded-lg"
+            repeat="{{ availableInterests }}" />
+</WrapLayout>'}}

@@ -1,0 +1,8 @@
+{{'<StackLayout class="bg-white p-4 rounded-lg shadow-md m-2">
+    <Label text="{{ title }}" class="text-lg font-bold" />
+    <Label text="{{ description }}" class="text-gray-600 mt-1" textWrap="true" />
+    <FlexboxLayout class="mt-2">
+        <Label text="{{ participants }}" class="text-sm text-purple-600" />
+        <Label text="{{ location }}" class="text-sm text-gray-500 ml-auto" />
+    </FlexboxLayout>
+</StackLayout>'}}

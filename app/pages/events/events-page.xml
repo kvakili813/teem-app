@@ -1,0 +1,40 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Events" class="bg-purple-600 text-white">
+        <ActionItem tap="{{ createEvent }}" 
+                   ios.position="right"
+                   android.position="actionBar">
+            <Label text="+" class="text-2xl text-white" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout>
+        <ListView items="{{ events }}" class="list-group">
+            <ListView.itemTemplate>
+                <StackLayout class="list-group-item p-4 bg-white mb-2 rounded-lg">
+                    <Label text="{{ title }}" class="text-xl font-bold" />
+                    <Label text="{{ description }}" class="text-gray-600 mt-1" textWrap="true" />
+                    <GridLayout columns="auto, *" class="mt-2">
+                        <Label text="{{ date | dateFormat }}" 
+                               class="text-purple-600" 
+                               col="0" />
+                        <Label text="{{ location.name }}" 
+                               class="text-right text-gray-500" 
+                               col="1" />
+                    </GridLayout>
+                    <StackLayout orientation="horizontal" class="mt-2">
+                        <Label text="{{ participants.length }}" 
+                               class="text-sm text-gray-500" />
+                        <Label text="{{ maxParticipants ? ' / ' + maxParticipants : '' }}" 
+                               class="text-sm text-gray-500" />
+                        <Label text=" participants" class="text-sm text-gray-500" />
+                    </StackLayout>
+                    <Button text="{{ participants.includes($parent.currentUser.id) ? 'Leave Event' : 'Join Event' }}"
+                            tap="{{ $parent.onJoinEvent }}"
+                            class="{{ participants.includes($parent.currentUser.id) ? 
+                                    'bg-red-500 text-white' : 'bg-purple-600 text-white' }} 
+                                    p-2 rounded-lg mt-2" />
+                </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

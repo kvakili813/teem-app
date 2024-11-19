@@ -1,0 +1,63 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Tell Us About You" class="bg-purple-600 text-white" />
+    
+    <GridLayout rows="*, auto">
+        <ScrollView row="0">
+            <StackLayout class="p-4 space-y-6">
+                <Label text="{{ currentQuestion.text }}" 
+                       class="text-xl font-bold text-center" 
+                       textWrap="true" />
+
+                <StackLayout visibility="{{ currentQuestion.type === 'multiple_choice' ? 'visible' : 'collapsed' }}">
+                    <StackLayout repeat="{{ currentQuestion.options }}"
+                               class="mb-2">
+                        <Button text="{{ $value }}"
+                                tap="{{ $parent.onOptionSelect }}"
+                                class="{{ $parent.isSelected($value) ? 
+                                        'bg-purple-600 text-white' : 
+                                        'bg-white text-purple-600 border-2 border-purple-600' }} 
+                                        p-4 rounded-lg" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout visibility="{{ currentQuestion.type === 'tags' ? 'visible' : 'collapsed' }}">
+                    <WrapLayout class="space-x-2 space-y-2">
+                        <Button repeat="{{ currentQuestion.options }}"
+                                text="{{ $value }}"
+                                tap="{{ $parent.onTagSelect }}"
+                                class="{{ $parent.isTagSelected($value) ? 
+                                        'bg-purple-600 text-white' : 
+                                        'bg-white text-purple-600 border-2 border-purple-600' }} 
+                                        p-2 rounded-lg" />
+                    </WrapLayout>
+                </StackLayout>
+
+                <StackLayout visibility="{{ currentQuestion.type === 'slider' ? 'visible' : 'collapsed' }}">
+                    <Slider value="{{ sliderValue }}"
+                           minValue="{{ currentQuestion.minValue }}"
+                           maxValue="{{ currentQuestion.maxValue }}"
+                           class="m-4" />
+                    <Label text="{{ sliderValue }}"
+                           class="text-center text-lg" />
+                </StackLayout>
+
+                <TextView visibility="{{ currentQuestion.type === 'text' ? 'visible' : 'collapsed' }}"
+                          hint="Type your answer..."
+                          text="{{ textResponse }}"
+                          class="p-4 bg-white rounded-lg border-2 border-gray-200" />
+            </StackLayout>
+        </ScrollView>
+
+        <GridLayout rows="auto" columns="auto, *, auto" row="1" class="p-4 bg-white border-t">
+            <Button text="Back"
+                    tap="{{ onPrevious }}"
+                    col="0"
+                    class="text-purple-600"
+                    visibility="{{ currentIndex > 0 ? 'visible' : 'collapsed' }}" />
+            <Button text="{{ isLastQuestion ? 'Finish' : 'Next' }}"
+                    tap="{{ onNext }}"
+                    col="2"
+                    class="bg-purple-600 text-white p-4 rounded-lg" />
+        </GridLayout>
+    </GridLayout>
+</Page>
